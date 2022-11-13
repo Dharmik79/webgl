@@ -7,31 +7,24 @@ var numPositions = 5000;
 
 window.onload = function init()
 {
+    // Get the canvas from the HTML
     var canvas = document.getElementById("gl-canvas");
     gl = canvas.getContext('webgl2');
+    // Check if the browser supports the WEBGL 2.0 or not
     if (!gl) alert( "WebGL 2.0 isn't available" );
 
-    //
-    //  Initialize our data for the Sierpinski Gasket
-    //
-
-    // First, initialize the corners of our gasket with three positions.
-
-    
-    
-    //  Load shaders and initialize attribute buffers
-
+   // Create a program with the WEBGL and add the vertex shader and the fragment shaders to it.
     var program = initShaders(gl, "vertex-shader", "fragment-shader");
     gl.useProgram(program);
 
-    // Load the data into the GPU
+  
 
-   
+   // Render the data points.
     render();
 };
 
 
 function render() {
-   
-    gl.drawArrays(gl.POINTS, 0, 1);
+   // To draw the graphics on the page
+    gl.drawArrays(gl.POINTS, 2, 3);
 }
