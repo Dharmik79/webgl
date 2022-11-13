@@ -43,5 +43,5 @@ window.onload = function init() {
 
 function render() {
   // To draw the graphics on the page
-  gl.drawArrays(gl.POINTS, 0, 3);
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
