@@ -17,8 +17,11 @@ window.onload = function init()
     var program = initShaders(gl, "vertex-shader", "fragment-shader");
     gl.useProgram(program);
 
-  
+  const uPositionLoc=gl.getUniformLocation(program,"uPosition");
+  const uPointSizeLoc=gl.getUniformLocation(program,"uPointSize");
 
+  gl.uniform1f(uPointSizeLoc,400);
+  gl.uniform4f(uPositionLoc,0.2,0,0,1);
    // Render the data points.
     render();
 };

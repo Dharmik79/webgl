@@ -18,14 +18,15 @@
     <script id="vertex-shader" type="x-shader/x-vertex">
     #version 300 es
     
-    
+    uniform float uPointSize;
+    uniform vec4 uPosition;
     
     void
     main()
     {
          
-        gl_Position = vec4(0.0,0,0,1.0);\
-        gl_PointSize=1500.0;
+        gl_Position = uPosition;
+        gl_PointSize=uPointSize;
     }
     </script>
     
