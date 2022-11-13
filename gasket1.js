@@ -16,23 +16,29 @@ window.onload = function init() {
   var program = initShaders(gl, "vertex-shader", "fragment-shader");
   gl.useProgram(program);
 
-  const uPositionLoc = gl.getUniformLocation(program, "uPosition");
-  gl.uniform4f(uPositionLoc, 0.2, 0, 0, 1);
+  const bufferData = new Float32Array([0, 0,0,1, 300]);
+  const aPositionLoc = gl.getAttribLocation(program, "aPosition");
+  const aPointSizeLoc = gl.getAttribLocation(program, "aPointSize");
 
-  const uPointSizeLoc = gl.getUniformLocation(program, "uPointSize");
-  gl.uniform1f(uPointSizeLoc, 400);
+  // To enable the vertex array
+  gl.enableVertexAttribArray(aPositionLoc);
+  gl.enableVertexAttribArray(aPointSizeLoc);
 
-  // Based on the index value the color of the cube changes.
-  const uIndexLoc = gl.getUniformLocation(program, "uIndex");
-  gl.uniform1i(uIndexLoc, 2);
 
-  const uColorsLoc = gl.getUniformLocation(program, "uColors");
-  gl.uniform4fv(uColorsLoc, [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1]);
+  // Create a buffer to hold the data points
+  const buffer = gl.createBuffer();
+  // Binding the buffer to the program
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, bufferData, gl.STATIC_DRAW);
+
+  gl.vertexAttribPointer(aPositionLoc, 4, gl.FLOAT, false, 4 * 5, 0);
+  gl.vertexAttribPointer(aPointSizeLoc, 1, gl.FLOAT, false, 4 * 5, 4 * 4);
+
   // Render the data points.
   render();
 };
 
 function render() {
   // To draw the graphics on the page
-  gl.drawArrays(gl.POINTS, 2, 3);
+  gl.drawArrays(gl.POINTS, 0, 1);
 }

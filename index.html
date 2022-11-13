@@ -1,48 +1,52 @@
-<html><head>
+<html>
+
+<head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>2D Sierpinski Gasket</title>
-    
+
     <script id="fragment-shader" type="x-shader/x-fragment">
-    #version 300 es
+        #version 300 es
     precision mediump float;
     
     out vec4 fragColor;
-    uniform int uIndex;
-    uniform vec4 uColors[3];
+    
     void
     main()
     {
-        fragColor = uColors[uIndex];
+        fragColor = vec4(1.0, 0.0, 0.0, 1.0);
     }
     </script>
-    
+
     <script id="vertex-shader" type="x-shader/x-vertex">
-    #version 300 es
+        #version 300 es
     
-    uniform float uPointSize;
-    uniform vec4 uPosition;
+    in float aPointSize;
+    in vec4 aPosition;
     
     void
     main()
     {
-         
-        gl_Position = uPosition;
-        gl_PointSize=uPointSize;
+        gl_PointSize=aPointSize;
+        gl_Position = aPosition;
+     
     }
     </script>
-    
-    
-    
-    
+
+
+
+
     <script src="../Common/initShaders.js"></script>
     <script src="../Common/MVnew.js"></script>
     <script src="gasket1.js"></script>
-    </head>
-    
-    <body data-new-gr-c-s-check-loaded="14.1086.0" data-gr-ext-installed="">
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1086.0" data-gr-ext-installed="">
     <canvas id="gl-canvas" width="512" height="512">
-    Oops ... your browser doesn't support the HTML5 canvas element
+        Oops ... your browser doesn't support the HTML5 canvas element
     </canvas>
-    
-    
-    </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+
+
+</body>
+<grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+</html>
