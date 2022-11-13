@@ -7,27 +7,27 @@
     <script id="fragment-shader" type="x-shader/x-fragment">
         #version 300 es
     precision mediump float;
-    in vec3 vColor;
+    in vec4 vColor;
     out vec4 fragColor;
     
     void
     main()
     {
-        fragColor = vec4(vColor, 1.0);
+        fragColor = vColor;
     }
     </script>
 
     <script id="vertex-shader" type="x-shader/x-vertex">
         #version 300 es
     
-    in float aPointSize;
+
     in vec4 aPosition;
-    in vec3 aColor;
-    out vec3 vColor;
+    in vec4 aColor;
+    out vec4 vColor;
     void
     main()
     {
-        gl_PointSize=aPointSize;
+   
         gl_Position = aPosition;
         vColor=aColor;
     }
