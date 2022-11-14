@@ -51,24 +51,27 @@ window.onload = function init() {
   const viewLoc = gl.getUniformLocation(program, "uView");
   const projectionLoc = gl.getUniformLocation(program, "uProjection");
 
+  let model = mat4();
+  let view = mat4();
+  let projection = mat4();
 
-  let model=mat4();
-  let view=mat4();
-  let projection=mat4();
-
-  model=lookAt(vec3(0,0,-.9),vec3(0,0,0),vec3(0,1,0))
-
-  gl.uniformMatrix4fv(modelLoc,false,flatten(model));
-  gl.uniformMatrix4fv(viewLoc,false,flatten(view));
-  gl.uniformMatrix4fv(projectionLoc,false,flatten(projection));
-
-
+  view = lookAt(vec3(100, 100, 100), vec3(0, 0, 0), vec3(0, 1, 0));
+  projection = perspective(
+    Math.PI / 2,
+    gl.canvas.width / gl.canvas.height,
+    0,
+    10
+  );
+  gl.uniformMatrix4fv(modelLoc, false, flatten(model));
+  gl.uniformMatrix4fv(viewLoc, false, flatten(view));
+  gl.uniformMatrix4fv(projectionLoc, false, flatten(projection));
 
   // Render the data points.
+  const render = () => {
+    requestAnimationFrame(render);
+    // model=rotate(0.02)
+
+    gl.drawArrays(gl.TRIANGLES, 0, 36);
+  };
   render();
 };
-
-function render() {
-  // To draw the graphics on the page
-  gl.drawArrays(gl.TRIANGLES, 0, 36);
-}

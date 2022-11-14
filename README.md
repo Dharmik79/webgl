@@ -71,4 +71,12 @@
         - up - facing towards
 
 
+#### PERSPECTIVE
+    - If COP(Center of Projection) is there.
+        - FOVY - Power of Lens in Radians
+        - aspectratio    (canvas width/height)
+        - near plane
+        - far plane
+
+
 
