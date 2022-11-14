@@ -53,7 +53,13 @@
 #### Binding
     - It is used to connect WEBGL program to JS
 
+#### DEPTH and the BLEND
+    - When two or more shapes are added at that time depth can be enabled
+        - gl.enable(gl.DEPTH_TEST)
 
+    - When changing the opacity of the color at that time blend can be used to overlap the background color;
+        - gl.enable(gl.BLEND)
+        - gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
 
 
 
