@@ -63,3 +63,12 @@
 
 
 
+#### LOOK AT
+    - lookat ()
+        - matrix
+        - eye - where camera is placed
+        - center - where camera is pointed
+        - up - facing towards
+
+
+

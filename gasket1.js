@@ -3,8 +3,6 @@
 var gl;
 var positions = [];
 
-var numPositions = 5000;
-
 window.onload = function init() {
   // Get the canvas from the HTML
   var canvas = document.getElementById("gl-canvas");
@@ -16,70 +14,61 @@ window.onload = function init() {
   var program = initShaders(gl, "vertex-shader", "fragment-shader");
   gl.useProgram(program);
 
-  const arrayVertexData = new Float32Array([
-    0,0,				1,0,0,
-    0.00000,1.00000,	1,0,0,
-    0.95106,0.30902,	1,0,0,
-  
-    0,0,				0,1,0,
-    0.95106,0.30902,	0,1,0,
-    0.58779,-.80902,	0,1,0,
-  
-    0,0,				0,0,1,
-    0.58779,-.80902,	0,0,1,
-    -.58779,-.80902,	0,0,1,
-  
-    0,0,				1,1,0,
-    -.58779,-.80902,	1,1,0,
-    -.95106,0.30902,	1,1,0,
-  
-    0,0,				1,0,1,
-    -.95106,0.30902,	1,0,1,
-    0.00000,1.00000,	1,0,1,
-  ]);
-  
-  const elementVertexData = new Float32Array([
-    0,0,				0,0,0,
-    0.00000,1.00000,	1,0,0,
-    0.95106,0.30902,	0,1,0,
-    0.58779,-.80902,	0,0,1,
-    -.58779,-.80902,	1,1,0,
-    -.95106,0.30902,	1,0,1,
-  ]);
-  
-  const elementIndexData = new Uint8Array([
-    0,1,2,
-    0,2,3,
-    0,3,4,
-    0,4,5,
-    0,5,1,
-  ]);
-  const aPositionLoc=gl.getAttribLocation(program,"aPosition");
-  const aColorLoc=gl.getAttribLocation(program,"aColor");
+  const vertexData = new Float32Array([
+    -0.5, -0.5, -0.5, 0, 1, 1, -0.5, 0.5, 0.5, 0, 1, 1, -0.5, 0.5, -0.5, 0, 1,
+    1, -0.5, -0.5, 0.5, 0, 1, 1, -0.5, 0.5, 0.5, 0, 1, 1, -0.5, -0.5, -0.5, 0,
+    1, 1,
 
-  const arrayVertexBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, arrayVertexBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, arrayVertexData, gl.STATIC_DRAW);
-  
-  // const elementVertexBuffer = gl.createBuffer();
-  // gl.bindBuffer(gl.ARRAY_BUFFER, elementVertexBuffer);
-  // gl.bufferData(gl.ARRAY_BUFFER, elementVertexData, gl.STATIC_DRAW);
-  
-  // const elementIndexBuffer = gl.createBuffer();
-  // gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, elementIndexBuffer);
-  // gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, elementIndexData, gl.STATIC_DRAW);
+    0.5, -0.5, -0.5, 1, 0, 1, 0.5, 0.5, -0.5, 1, 0, 1, 0.5, 0.5, 0.5, 1, 0, 1,
+    0.5, 0.5, 0.5, 1, 0, 1, 0.5, -0.5, 0.5, 1, 0, 1, 0.5, -0.5, -0.5, 1, 0, 1,
 
-  gl.vertexAttribPointer(aPositionLoc, 2, gl.FLOAT, false, 5*4, 0);
-  gl.vertexAttribPointer(aColorLoc, 3, gl.FLOAT, false, 5*4, 2*4);
+    -0.5, -0.5, -0.5, 0, 1, 0, 0.5, -0.5, -0.5, 0, 1, 0, 0.5, -0.5, 0.5, 0, 1,
+    0, 0.5, -0.5, 0.5, 0, 1, 0, -0.5, -0.5, 0.5, 0, 1, 0, -0.5, -0.5, -0.5, 0,
+    1, 0,
+
+    -0.5, 0.5, -0.5, 1, 1, 0, 0.5, 0.5, 0.5, 1, 1, 0, 0.5, 0.5, -0.5, 1, 1, 0,
+    -0.5, 0.5, 0.5, 1, 1, 0, 0.5, 0.5, 0.5, 1, 1, 0, -0.5, 0.5, -0.5, 1, 1, 0,
+
+    0.5, -0.5, -0.5, 0, 0, 1, -0.5, -0.5, -0.5, 0, 0, 1, 0.5, 0.5, -0.5, 0, 0,
+    1, -0.5, 0.5, -0.5, 0, 0, 1, 0.5, 0.5, -0.5, 0, 0, 1, -0.5, -0.5, -0.5, 0,
+    0, 1,
+
+    -0.5, -0.5, 0.5, 1, 0, 0, 0.5, -0.5, 0.5, 1, 0, 0, 0.5, 0.5, 0.5, 1, 0, 0,
+    0.5, 0.5, 0.5, 1, 0, 0, -0.5, 0.5, 0.5, 1, 0, 0, -0.5, -0.5, 0.5, 1, 0, 0,
+  ]);
+
+  const aPositionLoc = gl.getAttribLocation(program, "aPosition");
+  const aColorLoc = gl.getAttribLocation(program, "aColor");
+  const vertexBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, vertexData, gl.STATIC_DRAW);
+  gl.vertexAttribPointer(aPositionLoc, 3, gl.FLOAT, false, 24, 0);
+  gl.vertexAttribPointer(aColorLoc, 3, gl.FLOAT, false, 24, 12);
   gl.enableVertexAttribArray(aPositionLoc);
   gl.enableVertexAttribArray(aColorLoc);
+
+  const modelLoc = gl.getUniformLocation(program, "uModel");
+  const viewLoc = gl.getUniformLocation(program, "uView");
+  const projectionLoc = gl.getUniformLocation(program, "uProjection");
+
+
+  let model=mat4();
+  let view=mat4();
+  let projection=mat4();
+
+  model=lookAt(vec3(0,0,-.9),vec3(0,0,0),vec3(0,1,0))
+
+  gl.uniformMatrix4fv(modelLoc,false,flatten(model));
+  gl.uniformMatrix4fv(viewLoc,false,flatten(view));
+  gl.uniformMatrix4fv(projectionLoc,false,flatten(projection));
+
+
+
   // Render the data points.
   render();
 };
 
 function render() {
   // To draw the graphics on the page
-   gl.drawArrays(gl.TRIANGLES, 0, 15);
-
-// gl.drawElements(gl.TRIANGLES,15,gl.UNSIGNED_BYTE,0)
+  gl.drawArrays(gl.TRIANGLES, 0, 36);
 }
