@@ -40,4 +40,20 @@
         - gl.vertexAttribPointer(locSize,2,gl.FLOAT,false,3*4,2*4)
 
 
+#### Objects
+    - There are total 8 types of objects.
+
+#### Targets
+    - It describes the object's behaviour.
+    - Sets and expands the objects functionality.
+
+#### Functions
+    - Bind without the object cannot work
+
+#### Binding
+    - It is used to connect WEBGL program to JS
+
+
+
+
 
