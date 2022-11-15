@@ -1,5 +1,7 @@
 # README FILE
 
+CREDIT : Andrew Adamson
+Youtube Link : https://www.youtube.com/user/osakaandrew
 #### Uniforms
     - It is a global variable and it is used anywhere in the program and it is defined in the shaders(vertex and Fragment).
     - It cannot change during the draw functions call(draw Arrays or daw Elements).
